@@ -1,40 +1,26 @@
-int state1=0;
-int state2=0;
 int dc1=5;
 int dc2=6;
-int push1=7;
-int push2=4;
+int push1=3;
+int push2=2;
 
 void setup()
 {
  pinMode(dc1,OUTPUT);
  pinMode(dc2,OUTPUT);
  pinMode(push1,INPUT);
- pinMode(push1,INPUT);
+ pinMode(push2,INPUT);
+ attachInterrupt(digitalPinToInterrupt(push1), button1, RISING);
+ attachInterrupt(digitalPinToInterrupt(push2), button2, RISING);
 }
 void loop()
+{}
+void button1()
 {
- state1=digitalRead(push1);
- state2=digitalRead(push2);
-  
- if(state1==HIGH)
- {
-  digitalWrite(dc1,LOW);
-  digitalWrite(dc1,HIGH);
- }
-  else
-  {
-     digitalWrite(dc1,LOW);
-     digitalWrite(dc1,LOW);
-  }
-  if(state2==HIGH)
- {
-  digitalWrite(dc2,HIGH);
   digitalWrite(dc2,LOW);
- }
-  else
-  {
-     digitalWrite(dc2,LOW);
-     digitalWrite(dc2,LOW);
-  }
+  digitalWrite(dc1,HIGH);
+}
+void button2()
+{
+ digitalWrite(dc1,LOW);
+ digitalWrite(dc2,HIGH);
 }
